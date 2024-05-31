@@ -1,5 +1,6 @@
 const express = require("express");
 const taskRoutes = require("./routes/taskRoutes");
+const userRoutes = require("./routes/userRoutes");
 const connectDB = require("./config/dbConnection");
 require("dotenv").config();
 
@@ -15,3 +16,4 @@ connectDB().then(() => {
 
 // Routes
 app.use("/api/tasks", taskRoutes);
+app.use("/api/users", userRoutes);
