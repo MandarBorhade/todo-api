@@ -74,7 +74,7 @@ const userLogin = async (req, res) => {
         },
       },
       process.env.ACCESS_TOKEN_SECRET_KEY,
-      { expiresIn: "1h" }
+      { expiresIn: "5m" }
     );
 
     return res.status(200).json({
@@ -88,7 +88,13 @@ const userLogin = async (req, res) => {
   }
 };
 
+const currentUser = async (req, res) => {
+  return res.json(req.user)
+}
+
+
 module.exports = {
   userRegister,
   userLogin,
+  currentUser,
 };

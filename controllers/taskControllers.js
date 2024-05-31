@@ -2,7 +2,7 @@ const Task = require("../models/taskModel");
 
 //@desc create task
 //@route POST /api/tasks
-//@access public
+//@access private
 const createTask = async (req, res) => {
   const { title, description } = req.body;
 
@@ -15,6 +15,7 @@ const createTask = async (req, res) => {
   const task = await Task.create({
     title,
     description,
+    user_id: req.user.id,
   });
 
   return res.status(201).json({
@@ -25,9 +26,9 @@ const createTask = async (req, res) => {
 
 //@desc Get all tasks
 //@route GET /api/tasks
-//@access public
+//@access private
 const getAllTasks = async (req, res) => {
-  const tasks = await Task.find({});
+  const tasks = await Task.find({user_id: req.user.id});
 
   if (!tasks) {
     return res.status(404).json({ error: "No tasks found" });
