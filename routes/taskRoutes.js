@@ -10,9 +10,9 @@ const valideToken = require("../middleware/validateTokenHandler");
 const router = express.Router();
 
 router.get("/", valideToken, getAllTasks);
-router.get("/:id", getTask);
+router.get("/:id",valideToken, getTask);
 router.post("/", valideToken, createTask);
-router.put("/:id", updateTask);
-router.delete("/:id", deleteTask);
+router.put("/:id", valideToken, updateTask);
+router.delete("/:id", valideToken,  deleteTask);
 
 module.exports = router;
